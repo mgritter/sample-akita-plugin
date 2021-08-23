@@ -1,7 +1,8 @@
-package sample_akita_plugin
+package main
 
 import (
 	"github.com/akitasoftware/akita-cli/plugin"
+	"github.com/akitasoftware/akita-cli/printer"
 	"github.com/akitasoftware/akita-libs/spec_util"
 	pb "github.com/akitasoftware/akita-ir/go/api_spec"
 	"strings"
@@ -18,6 +19,8 @@ func (s SillyAkitaPlugin) Transform(method *pb.Method) error {
 	if meta == nil {
 		return nil
 	}
+	printer.Infof( "Bork! %v\n", meta.PathTemplate )
+		
 	path := strings.Split( meta.PathTemplate, "/" )
 	for i := 1; i < len(path); i++ {
 		path[i] = "bork"
